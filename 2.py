@@ -1,9 +1,4 @@
-import sys
-
-if len(sys.argv) < 2:
-    print("Insert at least one argument.")
-    sys.exit()
-input_file = sys.argv[1]
+from aocd import get_data
 
 
 def isGood(nums: list[int]) -> bool:
@@ -21,8 +16,8 @@ safe: int = 0
 dampener: int = 0
 
 
-input_data = open(input_file, "r")
-for line in input_data.readlines():
+input_data: str = get_data(day=2, year=2024)
+for line in input_data.splitlines():
     nums: list[int] = list(map(int, line.split()))
     
     safe += 1 if isGood(nums) else 0
@@ -32,7 +27,6 @@ for line in input_data.readlines():
         if isGood(nums[:i] + nums[i + 1:]):
             flag = True
     dampener += 1 if flag else 0
-input_data.close()
 
 
 print(f"Point 1: {safe}")
