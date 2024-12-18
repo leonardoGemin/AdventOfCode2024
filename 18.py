@@ -5,9 +5,6 @@ from collections import deque
 input_data: list[str] = get_data(day=18, year=2024).splitlines()
 dimensions: int = 70
 
-#input_data = "5,4\n4,2\n4,5\n3,0\n2,1\n6,3\n2,4\n1,5\n0,6\n3,3\n2,6\n5,1\n1,2\n5,5\n2,5\n6,5\n1,4\n0,4\n6,4\n1,1\n6,1\n1,0\n0,5\n1,6\n2,0".splitlines()
-#dimensions = 6
-
 
 positions: list[tuple[int, int]] = [(int(line.split(',')[0]), int(line.split(',')[1])) for line in input_data]
 
