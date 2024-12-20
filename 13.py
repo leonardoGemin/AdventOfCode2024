@@ -5,7 +5,8 @@ input_data: str = get_data(day=13, year=2024)
 
 
 def solve(offset: int = 0) -> int:
-    machines: list[tuple[int, int, int, int, int, int, int, int, int]] = []
+    score: int = 0
+    
     for machine in input_data.split("\n\n"):
         XA: int = int(machine.splitlines()[0].split()[2][2:-1])
         YA: int = int(machine.splitlines()[0].split()[3][2:])
@@ -14,17 +15,12 @@ def solve(offset: int = 0) -> int:
         X: int = int(machine.splitlines()[2].split()[1][2:-1]) + offset
         Y: int = int(machine.splitlines()[2].split()[2][2:]) + offset
 
-        tmpA: float = ((XB * Y) - (X * YB)) / ((XB * YA) - (XA * YB))
-        tmpB: float = (X - (tmpA * XA)) / XB
+        A: float = ((XB * Y) - (X * YB)) / ((XB * YA) - (XA * YB))
+        B: float = (X - (A * XA)) / XB
 
-        A: int = int(tmpA) if tmpA.is_integer() else None
-        B: int = int(tmpB) if tmpB.is_integer() else None
-
-        score: int = 3 * A + B if A is not None and B is not None else 0
-
-        machines.append((XA, XB, YA, YB, X, Y, A, B, score))
+        score += 3 * int(A) + int(B) if A.is_integer() and B.is_integer() else 0
     
-    return sum([machine[-1] for machine in machines])
+    return score
 
 
 print(f"Point 1: {solve()}")
